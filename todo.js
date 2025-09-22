@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       <button>Delete</button>
       `
       li.addEventListener('click',(e)=>{
-        if(event.target.tagName == 'BUTTON') return;
+        if(e.target.tagName === 'BUTTON') return;
         taskk.completed = !task.completed
         li.classList.toggle('completed')
         saveTask()
