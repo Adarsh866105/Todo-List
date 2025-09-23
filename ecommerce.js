@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 3, name: "product 3", price: 48.989 },
   ];
 
-  const cart = [];
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // cart.forEach(items => renderCart(items));
 
   const productList = document.getElementById("product-list");
   const cartItems = document.getElementById("cart-items");
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function addToCart(product) {
     cart.push(product);
+    saveItems();
     renderCart();
   }
 
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         deleteBtn.addEventListener("click", () => {
           cart.splice(index, 1);
+          saveItems();
           renderCart();
         });
 
@@ -77,4 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Checkout Succesfully");
     renderCart();
   });
+
+  function saveItems() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  renderCart();
+
 });
